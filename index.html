@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hogwarts</title>
+    <link rel="stylesheet" href="./Assets/style.css">
 </head>
 
 <body>
@@ -60,6 +61,143 @@
         </div>
     </section>
 
+    <!-- Seção sobre as casas de hogwarts -->
+    <section class="casas" id="casas">
+        <h2 class="casas-titulo">
+            As casas de hogwarts
+        </h2>
+        <div class="casas-container">
+            <!-- Card da grifinória -->
+            <div class="casa-card" id="grifinoria">
+                <img src="./Assets/Imagens/logo-grifinoria.png" alt="grifinória" class="casa-imagem">
+                <h3>Grifinória</h3>
+                <p>Valoriza coragem, ousadia e determinação.</p>
+            </div>
+            <!-- Card da sonserina -->
+            <div class="casa-card" id="sonserina">
+                <img src="./Assets/Imagens/logo_sonserina.png" alt="Sonserina" class="casa-imagem">
+                <h3>Sonserina</h3>
+                <p>Destaca ambição, astúcia e liderança.</p>
+            </div>
+            <!-- Card da corvinal -->
+            <div class="casa-card" id="corvinal">
+                <img src="./Assets/Imagens/logo-corvinal.png" alt="corvinal" class="casa-imagem">
+                <h3>Corvinal</h3>
+                <p>Valoriza inteligência, criatviidade e aprendizado.</p>
+            </div>
+
+            <!-- Card da lufa-lufa -->
+            <div class="casa-card" id="lufalufa">
+                <img src="./Assets/Imagens/logo-lufa-lufa.png" alt="lufa-lufa" class="casa-imagem">
+                <h3>Lufa-lufa</h3>
+                <p>Destaca lealdade, paciência e honestidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção sobre os estudantes de hogwarts -->
+    <section class="estudantes" id="estudantes">
+        <h2 class="estudante-titulo">
+            Quem são os estudantes de hogwarts?
+        </h2>
+        <div class="estudantes-todos">
+
+            <!-- Container do harry potter -->
+            <div class="estudante-container">
+                <img class="imagem-estudante" src="./Assets/Imagens/harry_potter_alterado_oficial.png"
+                    alt="Harry potter" data-gif="gif_harry.gif">
+                <h3 class="estudante-nome">Harry Potter</h3>
+                <img class="estudante-casa" src="./Assets/Imagens/logo-grifinoria.png" alt="Grifinória">
+                <div class="gif-card">
+                    <img class="gif-imagem" src="./Assets/Gifs/gif_harry.gif" alt="Gif do potter">
+                </div>
+            </div>
+            <!-- Container draco malfoy -->
+            <div class="estudante-container">
+                <img class="imagem-estudante" src="./Assets/Imagens/draco-malfoy_alterado.png" alt="Draco"
+                    data-gif="gif_draco.gif">
+                <h3 class="estudante-nome">Draco Malfoy</h3>
+                <img class="estudante-casa" src="./Assets/Imagens/logo_sonserina.png" alt="Sonserina">
+                <div class="gif-card">
+                    <img class="gif-imagem" src="./Assets/Gifs/gif_draco.gif" alt="Gif do draco">
+                </div>
+            </div>
+
+            <!-- Container do cedrico -->
+            <div class="estudante-container">
+                <img class="imagem-estudante" src="./Assets/Imagens/cedric_diggory_novo_6.png" alt="Cedrico"
+                    data-gif="gif_cedric.gif">
+                <h3 class="estudante-nome">Cedrico Diggory</h3>
+                <img class="estudante-casa" src="./Assets/Imagens/logo-lufa-lufa.png" alt="lufa-lufa">
+                <div class="gif-card">
+                    <img class="gif-imagem" src="./Assets/Gifs/gif_cedric.gif" alt="Gif do cedrico">
+                </div>
+            </div>
+
+            <!-- Container da luna -->
+            <div class="estudante-container">
+                <img class="imagem-estudante" src="./Assets/Imagens/foto_luna_alterada.png" alt="Luna"
+                    data-gif="gif_luna.gif">
+                <h3 class="estudante-nome">Luna Lovegood</h3>
+                <img class="estudante-casa" src="./Assets/Imagens/logo-corvinal.png" alt="Corvinal">
+                <div class="gif-card">
+                    <img class="gif-imagem" src="./Assets/Gifs/gif_luna.gif" alt="Gif da luna">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé da página -->
+    <footer class="rodape">
+        <img class="imagem-rodape" src="./Assets/Imagens/alura_logo.png" alt="Logo da alura">
+        <div>
+            <img src="./Assets/Imagens/whatsapp (2).png" alt="Zap Zap">
+            <p class="rodape-texto"> Fale Conosco (11) 97766-0111</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const estudantes = document.querySelectorAll('.estudante-container');
+
+        /* Para cada estudante, configura os eventos de mouse */
+        estudantes.forEach(estudante =>{
+            const imagem = estudante.querySelector('.imagem-estudante');
+            const gifCard = estudante.querySelector('.gif-card');
+            const gifImagem = estudante.querySelector('.gif-imagem');
+
+            /* Quando o mouse entra na imagem do estudante */
+            imagem.addEventListener('mouseenter',()=>{
+                const gifSrc = imagem.getAttribute('data-gif');
+                gifImagem.src= `./Assets/Gifs/${gifSrc}`;
+                gifCard.style.display = 'flex';
+            });
+
+            /* Quando o mouse sai da imagem do estudante */
+            imagem.addEventListener('mouseleave',()=>{
+                gifCard.style.display = 'none';
+            });
+        });
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.has('fromForms')){
+            showLetterAnimation(); /* Mostrar a animação da carta */
+        }
+        });
+
+        function showLetterAnimation(){
+            const overlay = document.getElementById('cartaOverlay');
+            overlay.style.display = 'flex'; /* Mostrar o overlay */
+
+            /* Configurar um timeout para esconder o overlay após 3 segundos */
+            setTimeout(()=>{
+                overlay.style.display = 'none';
+
+                history.replaceState(null,null,window.location.pathname);
+            }, 3000);
+
+
+        }
+    </script>
 </body>
 
 </html>
